@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">HW1_square_list</string>
-    <string name="btn_add_text">Add block</string>
+    <string name="btn_add_text">Add square</string>
 </resources>
