@@ -9,15 +9,13 @@ private const val TOTAL_BLOCKS = "TOTAL_BLOCKS_COUNT"
 class BlockListViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
     val blocks = mutableListOf<Square>()
     var totalSquares
-    get() = savedStateHandle[TOTAL_BLOCKS] ?: 0
-    set(value) = savedStateHandle.set(TOTAL_BLOCKS, value)
+        get() = savedStateHandle[TOTAL_BLOCKS] ?: 0
+        set(value) = savedStateHandle.set(TOTAL_BLOCKS, value)
 
     init {
-        if (totalSquares != 0) {
-            for (i in 0 until totalSquares) {
-                addBlock()
-                totalSquares--
-            }
+        for (i in 0 until totalSquares) {
+            addBlock()
+            totalSquares--
         }
     }
     fun addBlock() {
