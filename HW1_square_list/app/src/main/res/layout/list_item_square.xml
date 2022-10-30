@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="12dp">
+    <com.alanzlykh.hw1_square_list.SquareTextView
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSquare"
+        android:layout_width="wrap_content"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textSize="48sp"
+        tools:text="12"
+        android:gravity="center"
+        tools:background="@color/black"/>
+
+</FrameLayout>
