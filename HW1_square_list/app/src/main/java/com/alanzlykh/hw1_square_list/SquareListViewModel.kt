@@ -18,10 +18,16 @@ class BlockListViewModel(private val savedStateHandle: SavedStateHandle): ViewMo
             totalSquares--
         }
     }
+
     fun addBlock() {
         val newValue = blocks.size
-        if (newValue % 2 == 0) blocks.add(Square(newValue + 1, R.color.blue))
-        else blocks.add(Square(newValue + 1, R.color.red))
+        blocks.add(Square(
+            newValue + 1,
+            if (isEven(newValue)) R.color.blue else R.color.red))
         totalSquares++
+    }
+
+    private fun isEven(value: Int): Boolean {
+        return value % 2 == 0
     }
 }
