@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun btnAddSquareOnClick() {
-        val blockList = binding.fragmentContainer.getFragment<SquareListFragment>()
-        blockList.addItem()
+        val squareList = binding.fragmentContainer.getFragment<SquareListFragment>()
+        squareList.addItem()
     }
 
     private fun init() {

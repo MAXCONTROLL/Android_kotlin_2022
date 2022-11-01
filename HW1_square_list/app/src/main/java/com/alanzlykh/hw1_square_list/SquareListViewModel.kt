@@ -4,24 +4,24 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.alanzlykh.hw1_square_list.R
 
-private const val TOTAL_BLOCKS = "TOTAL_BLOCKS_COUNT"
+private const val TOTAL_SQUARES = "TOTAL_SQUARES_COUNT"
 
-class BlockListViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
-    val blocks = mutableListOf<Square>()
+class SquareListViewModel(private val savedStateHandle: SavedStateHandle): ViewModel() {
+    val squares = mutableListOf<Square>()
     var totalSquares
-        get() = savedStateHandle[TOTAL_BLOCKS] ?: 0
-        set(value) = savedStateHandle.set(TOTAL_BLOCKS, value)
+        get() = savedStateHandle[TOTAL_SQUARES] ?: 0
+        set(value) = savedStateHandle.set(TOTAL_SQUARES, value)
 
     init {
         for (i in 0 until totalSquares) {
-            addBlock()
+            addSquare()
             totalSquares--
         }
     }
 
-    fun addBlock() {
-        val newValue = blocks.size
-        blocks.add(Square(
+    fun addSquare() {
+        val newValue = squares.size
+        squares.add(Square(
             newValue + 1,
             if (isEven(newValue)) R.color.blue else R.color.red))
         totalSquares++

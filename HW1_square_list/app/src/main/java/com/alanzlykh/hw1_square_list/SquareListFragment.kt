@@ -26,7 +26,7 @@ class SquareListFragment : Fragment() {
     private val adapter
         get() = binding.rvSquareList.adapter
 
-    private val blockListViewModel: BlockListViewModel by viewModels()
+    private val squareListViewModel: SquareListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,14 +46,14 @@ class SquareListFragment : Fragment() {
             )
             else -> GridLayoutManager(context, ORIENTATION_PORTRAIT_SPAN_COUNT)
         }
-        val adapter = BlockListAdapter(blockListViewModel.blocks)
+        val adapter = SquareListAdapter(squareListViewModel.squares)
         binding.rvSquareList.adapter = adapter
     }
 
     fun addItem() {
-        blockListViewModel.addBlock()
-        adapter?.notifyItemInserted(blockListViewModel.totalSquares - 1)
-        binding.rvSquareList.scrollToPosition(blockListViewModel.totalSquares - 1)
+        squareListViewModel.addSquare()
+        adapter?.notifyItemInserted(squareListViewModel.totalSquares - 1)
+        binding.rvSquareList.scrollToPosition(squareListViewModel.totalSquares - 1)
     }
 
     override fun onDestroyView() {
