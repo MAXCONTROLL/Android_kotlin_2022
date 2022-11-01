@@ -10,18 +10,21 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alanzlykh.hw1_square_list.databinding.FragmentSquareListBinding
 
-class SquareListFragment: Fragment() {
+class SquareListFragment : Fragment() {
+
+    companion object {
+        const val ORIENTATION_LANDSCAPE_SPAN_COUNT = 4
+        const val ORIENTATION_PORTRAIT_SPAN_COUNT = 3
+    }
 
     private var _binding: FragmentSquareListBinding? = null
-    private val binding
-        get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null"
-        }
+    private val binding: FragmentSquareListBinding
+        get() = _binding!!
 
     private val currentOrientation
-    get() = resources.configuration.orientation
+        get() = resources.configuration.orientation
     private val adapter
-    get() = binding.rvSquareList.adapter
+        get() = binding.rvSquareList.adapter
 
     private val blockListViewModel: BlockListViewModel by viewModels()
 
@@ -29,16 +32,24 @@ class SquareListFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSquareListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.rvSquareList.layoutManager = when (currentOrientation) {
-            Configuration.ORIENTATION_LANDSCAPE -> GridLayoutManager(context, 4)
-            else -> GridLayoutManager(context, 3)
+            Configuration.ORIENTATION_LANDSCAPE -> GridLayoutManager(
+                context,
+                ORIENTATION_LANDSCAPE_SPAN_COUNT
+            )
+            else -> GridLayoutManager(context, ORIENTATION_PORTRAIT_SPAN_COUNT)
         }
         val adapter = BlockListAdapter(blockListViewModel.blocks)
         binding.rvSquareList.adapter = adapter
-        return binding.root
     }
+
     fun addItem() {
         blockListViewModel.addBlock()
         adapter?.notifyItemInserted(blockListViewModel.totalSquares - 1)
