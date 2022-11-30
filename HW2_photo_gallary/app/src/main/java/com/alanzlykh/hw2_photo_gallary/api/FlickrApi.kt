@@ -9,8 +9,9 @@ interface FlickrApi {
     @GET(
         "/services/rest/?method=flickr.interestingness.getList" +
                 "&api_key=$API_KEY" +
-                "&format=json&nojsoncallback=1" +
-                "&extras=url_s"
+                "&format=json" +
+                "&nojsoncallback=1" +
+                "&extras=url_o"
     )
     suspend fun fetchPhotos(): FlickrResponse
 }
