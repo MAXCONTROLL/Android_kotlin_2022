@@ -11,7 +11,7 @@ interface FlickrApi {
                 "&api_key=$API_KEY" +
                 "&format=json" +
                 "&nojsoncallback=1" +
-                "&extras=url_o"
+                "&extras=url_s"
     )
     suspend fun fetchPhotos(): FlickrResponse
 }
