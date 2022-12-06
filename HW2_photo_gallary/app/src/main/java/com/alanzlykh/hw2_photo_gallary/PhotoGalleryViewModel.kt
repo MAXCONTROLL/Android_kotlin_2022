@@ -3,6 +3,7 @@ package com.alanzlykh.hw2_photo_gallary
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alanzlykh.hw2_photo_gallary.api.FlickrApiObj
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "PhotoGalleryViewModel"
 class PhotoGalleryViewModel : ViewModel() {
-    private val photoRepository = PhotoRepository()
+    private val photoRepository = PhotoRepository(FlickrApiObj.flickrApi)
     private val _galleryItems: MutableStateFlow<List<GalleryItem>> = MutableStateFlow(emptyList())
     val galleryItems: StateFlow<List<GalleryItem>> get() = _galleryItems.asStateFlow()
     init { viewModelScope.launch {

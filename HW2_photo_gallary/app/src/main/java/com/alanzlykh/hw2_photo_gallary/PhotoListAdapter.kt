@@ -2,7 +2,6 @@ package com.alanzlykh.hw2_photo_gallary
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.RemoteViews.RemoteCollectionItems
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.alanzlykh.hw2_photo_gallary.databinding.ListItemGalleryBinding
@@ -12,7 +11,8 @@ class PhotoViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(galleryItem: GalleryItem) {
         binding.itemImageView.load(galleryItem.url) {
-            placeholder(R.drawable.bill_up_close)
+            placeholder(R.drawable.image_placeholder)
+            crossfade(true)
         }
     }
 }
