@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.stateIn
 class PhotoGalleryViewModel: ViewModel() {
     private val photoRepository = PhotoRepository(FlickrApiObj.api)
     val photoItems: StateFlow<PagingData<GalleryItem>> =
-        Pager(PagingConfig(pageSize = 10)) {
+        Pager(PagingConfig(pageSize = 1)) {
             PhotoPagingSource(photoRepository, maxLoadSize = 100, startPage = 0)
         }.flow
             .cachedIn(viewModelScope)
